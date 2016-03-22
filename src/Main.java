@@ -1,6 +1,7 @@
 
 public class Main {
+	public static Gui plop;
 	public static void main(String[] args) {
-		Gui plop = new Gui();
+		plop = new Gui();
 	}
 }

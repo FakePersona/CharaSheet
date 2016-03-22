@@ -1,14 +1,13 @@
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class Gui {
-	private JFrame gui;
-	private StatDock statDock;
+	public JFrame gui;
+	public StatDock statDock;
 	private Savestate savestate;
 	private int width = 400;
-	private int height = 600;
+	private int height = 600; 
 	
 	public Gui() {
 		gui = new JFrame();
@@ -23,7 +22,7 @@ public class Gui {
 		gui.add(statDock.main,BorderLayout.CENTER);
 		
 		savestate = new Savestate();
-		gui.add(savestate.saveButton,BorderLayout.SOUTH);
+		gui.add(savestate.savePanel,BorderLayout.SOUTH);
 		
 		gui.setVisible(true);
 	}

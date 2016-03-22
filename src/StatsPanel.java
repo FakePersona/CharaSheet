@@ -12,6 +12,10 @@ public class StatsPanel {
 	private JTextField statField;
 	private JLabel bonusPanel;
 	
+	public int getStat() {
+		return stat;
+	}
+	
 	public void setStat(int n) {
 		stat = n;
 		update();
