@@ -1,9 +1,13 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -19,6 +23,7 @@ public class Savestate {
 		savePanel = new JPanel();
 		
 		saveButton.addActionListener(new save());
+		loadButton.addActionListener(new load());
 		
 		savePanel.add(saveButton);
 		savePanel.add(loadButton);
@@ -53,7 +58,37 @@ public class Savestate {
 	    	s += Main.plop.statDock.vitPanel.getStat() + "\n";
 	    	s += Main.plop.statDock.perPanel.getStat() + "\n";
 	    	s += Main.plop.statDock.wisPanel.getStat() + "\n";
-	    	stringToFile(s,"test.txt");    
+	    	stringToFile(s,Main.plop.header.getName() + ".txt");    
+	    }
+	  }  
+	
+	public String[] readLines(String filename) {
+		List<String> lines = new ArrayList<String>();
+		try {
+			FileReader fileReader = new FileReader(filename);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String line = null;
+			while ((line = bufferedReader.readLine()) != null) {
+				lines.add(line);
+			}
+			bufferedReader.close();
+		} catch (IOException x) {
+		    System.err.println(x);
+		} finally {
+			return lines.toArray(new String[lines.size()]);
+		}
+    }
+	
+	class load implements ActionListener{
+	    
+	    public void actionPerformed(ActionEvent e) {
+	    	String[] s = readLines(Main.plop.header.getName() + ".txt");
+	    	Main.plop.statDock.strPanel.setStat(Integer.valueOf(s[0]));
+	    	Main.plop.statDock.dexPanel.setStat(Integer.valueOf(s[1]));
+	    	Main.plop.statDock.intPanel.setStat(Integer.valueOf(s[2]));
+	    	Main.plop.statDock.vitPanel.setStat(Integer.valueOf(s[3]));
+	    	Main.plop.statDock.perPanel.setStat(Integer.valueOf(s[4]));
+	    	Main.plop.statDock.wisPanel.setStat(Integer.valueOf(s[5]));
 	    }
 	  }  
 }

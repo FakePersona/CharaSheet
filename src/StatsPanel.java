@@ -13,6 +13,7 @@ public class StatsPanel {
 	private JLabel bonusPanel;
 	
 	public int getStat() {
+		stat = Integer.valueOf(statField.getText());
 		return stat;
 	}
 	
